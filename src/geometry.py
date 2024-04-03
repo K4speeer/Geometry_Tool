@@ -11,8 +11,11 @@ class Shape(ABC):
 class Circle(Shape):
     
     def __init__(self, radius):
-        self.radius = radius
-    
+        if radius >= 0:
+            self.radius = radius
+        else:
+            raise ValueError("Radius of a circle must be positive natural number.")            
+            
     def calc_area(self):
         return pi * (self.radius ** 2)
     
@@ -20,9 +23,12 @@ class Circle(Shape):
 class Triangle(Shape):
     
     def __init__(self, side1, side2, side3):
-        self.side1 = side1
-        self.side2 = side2
-        self.side3 = side3
+        if side1 or side2 or side3 >= 0:
+            self.side1 = side1
+            self.side2 = side2
+            self.side3 = side3
+        else:
+            raise ValueError("A Triangle side must be positive natural number.")
     
     def is_rightangled(self):
         sides = [self.side1, self.side2, self.side3]
