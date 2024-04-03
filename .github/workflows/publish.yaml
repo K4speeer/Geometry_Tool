@@ -7,7 +7,8 @@ on:
 
 jobs:
   build:
-    name: Build distribution 
+    name: Build distribution
+    needs: test 
     runs-on: ubuntu-latest
 
     steps:
