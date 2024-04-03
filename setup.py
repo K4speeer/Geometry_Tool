@@ -9,11 +9,9 @@ with open("README.md", "r") as fh:
     
 setup(
     name='geometool',
-    version='0.1.0',
+    version='0.1.1',
     packages=['geometool'],
-    install_requires= [
-        'abc'
-    ],
+    install_requires= [],
     author='Idris Taha',
     author_email='dri.taha24@gmail.com',
     description='A Geometric Shape Calculator Tool',
