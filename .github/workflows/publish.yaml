@@ -6,6 +6,9 @@ on:
       - '*'
 
 jobs:
+  test:
+    uses: ./test.yaml#test
+    
   build:
     name: Build distribution
     needs: test 
