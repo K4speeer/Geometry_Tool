@@ -1,6 +1,6 @@
 import unittest
 from math import pi
-from geometry import Circle, Triangle
+from geometry_tool import Circle, Triangle
 
 class TestShapes(unittest.TestCase):
 
