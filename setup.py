@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setup(
     name='geometool',
-    version='0.0.1',
+    version='0.0.7',
     packages=['geometool'],
     install_requires=[
         'math'
