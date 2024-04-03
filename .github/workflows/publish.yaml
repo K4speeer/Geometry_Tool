@@ -1,17 +1,16 @@
-name: Publish Package to PyPI
+name: Build-Test-Pack-Publish
 
 on:
+  push:
+    branches: [ '*' ]
   push:
     tags:
       - '*'
 
 jobs:
-  test:
-    uses: ./test.yaml@v1
 
   build:
-    name: Build distribution
-    needs: test 
+    name: Build Package
     runs-on: ubuntu-latest
 
     steps:
@@ -20,30 +19,60 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.x"
-
-    - name: Install pypa/build
-      run: python3 -m pip install build --user
-
-    - name: Build a binary wheel and a source tarball
-      run: python3 -m build
-
-    - name: Store the distribution packages
-      uses: actions/upload-artifact@v3
-      with:
-        name: python-package-distributions
-        path: dist/
-
-  publish-to-PyPI:
-    name: Publish lib package to pypi 
+  
+  test:
+    needs: build
+    name: Testing
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write 
-
     steps:
-    - name: Download all the dists
-      uses: actions/download-artifact@v3
-      with:
-        name: python-package-distributions
-        path: dist/
-    - name: Publish distribution to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          
+      - name: Run tests
+        run: |
+          python geometool/test_geometry_tool.py
+
+  build-distro:
+    needs:test
+    name: Build Distrobution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+      - name: Install pypa/build
+        run: python3 -m pip install build --user
+
+      - name: Build a binary wheel and a source tarball
+        run: python3 -m build
+
+      - name: Store the distribution packages
+        uses: actions/upload-artifact@v3
+        with:
+          name: python-package-distributions
+          path: dist/
+
+    publish-to-PyPI:
+      needs:build-distro
+      name: Publish lib package to pypi 
+      runs-on: ubuntu-latest
+      permissions:
+        id-token: write 
+
+      steps:
+      - name: Download all the dists
+        uses: actions/download-artifact@v3
+        with:
+          name: python-package-distributions
+          path: dist/
+      - name: Publish distribution to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
