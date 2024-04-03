@@ -40,8 +40,8 @@ jobs:
           python geometool/test_geometry_tool.py
 
   build-distro:
-    needs:test
-    name: Build Distrobution
+    needs: test
+    name: Build Distro
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
