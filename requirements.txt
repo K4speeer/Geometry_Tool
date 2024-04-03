@@ -1,2 +1,2 @@
-math
+# Optional dep
 abc

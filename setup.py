@@ -12,7 +12,6 @@ setup(
     version='0.0.9',
     packages=['geometool'],
     install_requires= [
-        'math',
         'abc'
     ],
     author='Idris Taha',
