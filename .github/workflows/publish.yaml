@@ -1,4 +1,4 @@
-name: Build-Test-Pack-Publish
+name: BTPP
 
 on:
   push:
@@ -40,6 +40,7 @@ jobs:
           python geometool/test_geometry_tool.py
 
   build-distro:
+    if: startsWith(github.ref, 'refs/tags/')
     needs: test
     name: Build Distro
     runs-on: ubuntu-latest
@@ -62,7 +63,7 @@ jobs:
           path: dist/
 
     publish-to-PyPI:
-      needs:build-distro
+      needs: build-distro
       name: Publish lib package to pypi 
       runs-on: ubuntu-latest
       permissions:
