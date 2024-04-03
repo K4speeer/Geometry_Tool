@@ -7,8 +7,8 @@ on:
 
 jobs:
   test:
-    uses: ./test.yaml#test
-    
+    uses: ./test.yaml@v1
+
   build:
     name: Build distribution
     needs: test 
