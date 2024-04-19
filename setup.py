@@ -9,7 +9,7 @@ with open("README.md", "r") as fh:
     
 setup(
     name='geometool',
-    version='0.1.1',
+    version='0.1.2',
     packages=['geometool'],
     install_requires= [],
     author='Idris Taha',
