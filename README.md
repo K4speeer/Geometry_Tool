@@ -28,7 +28,7 @@ The package provides the following functions:
     - Triangle()
 - `calculate_perimeter(shape)`: Calculates the perimeter of a given shape. Supported shapes include:
     - Circle(radius)
-    - Triangle()+
+    - Triangle()
 
 ## Classes
 
@@ -63,5 +63,7 @@ g.calculate_perimeter(s2)
 ```
 
 
-## Authors: Idris Taha
-- Contact: dri.taha24@gmail.com
+## Authors: 
+Idris Taha
+- E-mail: dri.taha24@gmail.com
+- *@idristaha*
