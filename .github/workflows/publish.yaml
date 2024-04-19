@@ -37,7 +37,7 @@ jobs:
           python geometool/test_geometry_tool.py
 
   build-distro:
-    if: startsWith(github.ref, 'refs/tags/') && github.ref == 'refs/head/master'
+    if: startsWith(github.ref, 'refs/tags/')
     needs: test
     name: Build Distro
     runs-on: ubuntu-latest
