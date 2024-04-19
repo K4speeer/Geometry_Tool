@@ -1,7 +1,7 @@
 import unittest
 from math import pi
-from .geometry_tool import Circle, Triangle
-from .utils import *
+from geometry_tool import Circle, Triangle
+from utils import *
 
 class TestShapes(unittest.TestCase):
 
